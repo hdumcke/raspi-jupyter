@@ -2,6 +2,8 @@
 
 set -e
 
+echo $(date)
+
 ### Get directory where this script is installed
 BASEDIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
@@ -72,7 +74,7 @@ cmake -DCMAKE_BUILD_TYPE=Release \
       -DVTK_WRAP_PYTHON=ON \
       -DVTK_OPENGL_HAS_EGL=False \
       -DPython3_EXECUTABLE=/home/ubuntu/.venv/jupyter/bin/python ../
-make -j4
+make
 sudo make install
 sudo ldconfig
 
@@ -94,4 +96,5 @@ sed -i "/vtk/d" /tmp/requirements.txt
 sudo apt install -y supervisor
 cd $BASEDIR/Supervisor
 ./install.sh
-
+echo $(date)
+sudo reboot
